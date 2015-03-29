@@ -21,6 +21,10 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
     
     var fullText = ""
     
+    var currentPage = ""
+    
+    var noteData: [String: String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,10 +35,14 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         
         self.speechButton.enabled = false
         
-        if attAuthenticated {
-            self.prepareSpeech()
+        if let n = noteData {
+            self.renderMarkdown(self.noteData["page"]!)
         } else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+            if attAuthenticated {
+                self.prepareSpeech()
+            } else {
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+            }
         }
     }
     
@@ -57,7 +65,8 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         let path = NSBundle.mainBundle().pathForResource("github-markdown", ofType: "css")!
         let style = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)!
         let htmlStyle = "<style type=\"text/css\">\n" + style + "\n</style>"
-        self.webView.loadHTMLString("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>", baseURL: nil)
+        self.currentPage = "<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>"
+        self.webView.loadHTMLString(self.currentPage, baseURL: nil)
         
         self.noticeLabel.alpha = 0
     }
@@ -75,6 +84,35 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
     }
     
     @IBAction func backButton(sender: AnyObject) {
+        let url = NSURL(string: "http://45.55.184.231:5000/refresh")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "GET"
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (_, _, _) -> Void in
+            println("cleared")
+        }
+        
+        if currentPage != "" {
+            if let n = noteData {
+                println("dont save")
+            } else {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                var notes = defaults.arrayForKey("BluejayNotes")!
+                let date = NSDate()
+                let formatter = NSDateFormatter()
+                formatter.dateStyle = .MediumStyle
+                
+                let note = [
+                    "name": "Note \(notes.count + 1)",
+                    "time": formatter.stringFromDate(date),
+                    "page": self.currentPage
+                ]
+                
+                notes.append(note)
+                defaults.setObject(notes, forKey: "BluejayNotes")
+            }
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -122,8 +160,6 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         if recognizedText != "" {
             self.handleRecognition(recognizedText)
         }
-        
-        self.noticeLabel.alpha = 0
         
         self.speechButton.setImage(UIImage(named: "Microphone-Normal"), forState: .Normal)
     }

@@ -12,6 +12,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet var tableView: UITableView!
     
+    var noteDataToSend: [String: String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +26,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let statusBarView = UIView(frame: CGRectMake(0, 0, device.width, 20))
         statusBarView.backgroundColor = UIColor(red: 0.11, green: 0.47, blue: 0.62, alpha: 1)
         self.view.addSubview(statusBarView)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let notes = defaults.arrayForKey("BluejayNotes")
+        
+        if let n = notes {
+            println("found")
+        } else {
+            defaults.setObject([AnyObject](), forKey: "BluejayNotes")
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -31,7 +42,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.arrayForKey("BluejayNotes")!.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -39,17 +51,32 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let notes = defaults.arrayForKey("BluejayNotes")! as [[String: String]]
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as UITableViewCell
         
         let nameLabel = cell.viewWithTag(10) as UILabel
-        nameLabel.text = "History Class"
+        nameLabel.text = notes[indexPath.row]["name"]
+        
+        let dateLabel = cell.viewWithTag(11) as UILabel
+        dateLabel.text = notes[indexPath.row]["time"]
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let notes = defaults.arrayForKey("BluejayNotes")! as [[String: String]]
+        self.noteDataToSend = notes[indexPath.row]
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("noteSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let nvc = segue.destinationViewController as NoteViewController
+        nvc.noteData = self.noteDataToSend
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
