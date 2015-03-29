@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+import OAuthSwift
+import SwiftyJSON
 import UIKit
 
 @UIApplicationMain

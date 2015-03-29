@@ -7,23 +7,25 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-let attAppKey = "44oooscoert4xj3hbpztz0013minknuo"
-let attAppSecret = "frqcjfuqnjr4yznxyeo3ybwn5tuxkjfk"
+let attClientId = "44oooscoert4xj3hbpztz0013minknuo"
+let attClientSecret = "frqcjfuqnjr4yznxyeo3ybwn5tuxkjfk"
 let attAuthURL = "https://api.att.com/oauth/token"
 let attScope = "SPEECH"
 var attAuthenticated = false
 
 func authenticateAtt() {
-    let authURL = NSURL(string: attAuthURL)!
+    let url = NSURL(string: "https://api.att.com/oauth/token")!
+    let request = NSMutableURLRequest(URL: url)
+    let postString = "grant_type=client_credentials&scope=\(attScope)&client_id=\(attClientId)&client_secret=\(attClientSecret)"
     
-    let request = NSMutableURLRequest(URL: authURL)
-    let postString = "grant_type=client_credentials&scope=%@&client_id=%@&client_secret=%@"
     request.HTTPMethod = "POST"
     request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+    request.timeoutInterval = 30
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-        let stuff = NSString(data: data, encoding: NSUTF8StringEncoding)!
-        println(stuff)
+        let json = JSON(data: data)
+        println(json)
     }
 }
