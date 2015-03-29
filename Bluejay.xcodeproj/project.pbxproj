@@ -16,8 +16,8 @@
 		EB1EF55E1AC761DF00A2A2B8 /* BluejayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */; };
 		EB8004671AC7B218008E8B25 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004631AC7B011008E8B25 /* AVFoundation.framework */; };
 		EB8004691AC7B21F008E8B25 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */; };
-		EB80046C1AC7BD12008E8B25 /* SpeechButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */; };
 		EB80046E1AC7D492008E8B25 /* github-markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = EB80046D1AC7D492008E8B25 /* github-markdown.css */; };
+		EB8004731AC835F2008E8B25 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8004721AC835F2008E8B25 /* MainViewController.swift */; };
 		EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */; };
 		EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */; };
 /* End PBXBuildFile section */
@@ -49,8 +49,8 @@
 		EB8004631AC7B011008E8B25 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB8004651AC7B019008E8B25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
 		EB80046D1AC7D492008E8B25 /* github-markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "github-markdown.css"; sourceTree = "<group>"; };
+		EB8004721AC835F2008E8B25 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
 		EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
 		EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
@@ -122,9 +122,8 @@
 		EB1EF5441AC761DE00A2A2B8 /* Bluejay */ = {
 			isa = PBXGroup;
 			children = (
-				EB80046A1AC7BD0A008E8B25 /* Views */,
+				EB8004711AC835E7008E8B25 /* View Controllers */,
 				EB1EF5471AC761DE00A2A2B8 /* AppDelegate.swift */,
-				EB1EF5491AC761DE00A2A2B8 /* ViewController.swift */,
 				EB1EF54B1AC761DE00A2A2B8 /* Main.storyboard */,
 				EB1EF54E1AC761DF00A2A2B8 /* Images.xcassets */,
 				EB1EF5501AC761DF00A2A2B8 /* LaunchScreen.xib */,
@@ -159,12 +158,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EB80046A1AC7BD0A008E8B25 /* Views */ = {
+		EB8004711AC835E7008E8B25 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */,
+				EB1EF5491AC761DE00A2A2B8 /* ViewController.swift */,
+				EB8004721AC835F2008E8B25 /* MainViewController.swift */,
 			);
-			name = Views;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		EBFEDE7F1AC7A19700C1C09E /* Resources */ = {
@@ -333,9 +333,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1EF54A1AC761DE00A2A2B8 /* ViewController.swift in Sources */,
-				EB80046C1AC7BD12008E8B25 /* SpeechButton.swift in Sources */,
 				EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */,
 				EB1EF5481AC761DE00A2A2B8 /* AppDelegate.swift in Sources */,
+				EB8004731AC835F2008E8B25 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bluejay",
@@ -473,7 +474,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
@@ -484,6 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bluejay",
@@ -497,7 +501,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;

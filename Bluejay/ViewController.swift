@@ -11,9 +11,10 @@ import UIKit
 
 class ViewController: UIViewController, ATTSpeechServiceDelegate {
     
+    @IBOutlet var noticeLabel: UILabel!
     @IBOutlet var webView: UIWebView!
 
-    @IBOutlet var speechButton: SpeechButton!
+    @IBOutlet var speechButton: UIButton!
     @IBOutlet var sbWidthConstraint: NSLayoutConstraint!
     @IBOutlet var sbRightConstraint: NSLayoutConstraint!
     @IBOutlet var sbBottomConstraint: NSLayoutConstraint!
@@ -23,23 +24,12 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfig)
+        let device = UIScreen.mainScreen().bounds
+        let statusBarView = UIView(frame: CGRectMake(0, 0, device.width, 20))
+        statusBarView.backgroundColor = UIColor(red: 0.11, green: 0.47, blue: 0.62, alpha: 1)
+        self.view.addSubview(statusBarView)
         
-        let url = NSURL(string: "http://10.31.67.43:5000/submit")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        
-        let bodyObject = [
-            "text": "test"
-        ]
-        
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(bodyObject, options: nil, error: nil)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-            let content = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-            self.renderMarkdown(content)
-        }
+        self.speechButton.enabled = false
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
     }
@@ -49,6 +39,13 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         sbWidthConstraint.constant = device.width / 6.44
         sbRightConstraint.constant = device.width / 22
         sbBottomConstraint.constant = device.width / 22
+        
+        let shadowPath = UIBezierPath(ovalInRect: self.speechButton.bounds)
+        self.speechButton.layer.masksToBounds = false
+        self.speechButton.layer.shadowColor = UIColor.blackColor().CGColor
+        self.speechButton.layer.shadowOffset = CGSizeMake(0, 2)
+        self.speechButton.layer.shadowOpacity = 0.6
+        self.speechButton.layer.shadowPath = shadowPath.CGPath
     }
     
     func renderMarkdown(markdown: String) {
@@ -68,7 +65,7 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         service.bearerAuthToken = attAccessToken
         service.prepare()
         
-        println("Audio service initialized")
+        self.speechButton.enabled = true
     }
     
     @IBAction func beginRecognizing(sender: AnyObject) {
@@ -97,9 +94,15 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         if recognizedText != "" {
             self.handleRecognition(recognizedText)
         }
+        
+        self.noticeLabel.alpha = 0
     }
     
     func speechService(speechService: ATTSpeechService!, failedWithError error: NSError!) {
         println("Speech service failed with error: \(error.localizedDescription)")
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }
