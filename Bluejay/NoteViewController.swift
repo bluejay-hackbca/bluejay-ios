@@ -95,7 +95,7 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         println("received text: \(recognizedText)")
         let escapedText = recognizedText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
-        let url = NSURL(string: "http://10.31.67.43:5000/submit")
+        let url = NSURL(string: "http://45.55.184.231:5000/submit")
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
         
