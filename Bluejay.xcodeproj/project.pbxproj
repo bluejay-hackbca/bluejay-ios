@@ -13,6 +13,7 @@
 		EB1EF54F1AC761DF00A2A2B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF54E1AC761DF00A2A2B8 /* Images.xcassets */; };
 		EB1EF5521AC761DF00A2A2B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF5501AC761DF00A2A2B8 /* LaunchScreen.xib */; };
 		EB1EF55E1AC761DF00A2A2B8 /* BluejayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */; };
+		EBB80C381AC78D2A001DE389 /* SpeechKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB80C371AC78D2A001DE389 /* SpeechKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		EB1EF5571AC761DF00A2A2B8 /* BluejayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluejayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1EF55C1AC761DF00A2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluejayTests.swift; sourceTree = "<group>"; };
+		EBB80C371AC78D2A001DE389 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB80C381AC78D2A001DE389 /* SpeechKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +80,7 @@
 		EB1EF5441AC761DE00A2A2B8 /* Bluejay */ = {
 			isa = PBXGroup;
 			children = (
+				EB1EF5671AC78D0300A2A2B8 /* Frameworks */,
 				EB1EF5471AC761DE00A2A2B8 /* AppDelegate.swift */,
 				EB1EF5491AC761DE00A2A2B8 /* ViewController.swift */,
 				EB1EF54B1AC761DE00A2A2B8 /* Main.storyboard */,
@@ -110,6 +114,14 @@
 				EB1EF55C1AC761DF00A2A2B8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB1EF5671AC78D0300A2A2B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBB80C371AC78D2A001DE389 /* SpeechKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +173,7 @@
 				TargetAttributes = {
 					EB1EF5411AC761DE00A2A2B8 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = JDJKS788L2;
 					};
 					EB1EF5561AC761DF00A2A2B8 = {
 						CreatedOnToolsVersion = 6.2;
@@ -336,6 +349,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bluejay",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -346,6 +365,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bluejay",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -405,6 +430,7 @@
 				EB1EF5631AC761DF00A2A2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB1EF5641AC761DF00A2A2B8 /* Build configuration list for PBXNativeTarget "BluejayTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +439,7 @@
 				EB1EF5661AC761DF00A2A2B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
