@@ -39,11 +39,11 @@
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uoW-nV-15L" secondAttribute="bottom" constant="32" id="4rr-C8-vGP"/>
                             <constraint firstItem="0ff-Zy-Cng" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="6Wk-Ua-7wa"/>
-                            <constraint firstItem="0ff-Zy-Cng" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9R7-ON-l9a"/>
+                            <constraint firstItem="0ff-Zy-Cng" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="8" id="9R7-ON-l9a"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="0ff-Zy-Cng" secondAttribute="bottom" id="SQw-Ai-Hnk"/>
                             <constraint firstAttribute="trailing" secondItem="uoW-nV-15L" secondAttribute="trailing" constant="32" id="ie1-2E-TNn"/>
                             <constraint firstItem="0ff-Zy-Cng" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="wNT-bU-nBS"/>
-                            <constraint firstAttribute="trailing" secondItem="0ff-Zy-Cng" secondAttribute="trailing" id="xNy-aQ-SIT"/>
+                            <constraint firstAttribute="trailing" secondItem="0ff-Zy-Cng" secondAttribute="trailing" constant="8" id="xNy-aQ-SIT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
