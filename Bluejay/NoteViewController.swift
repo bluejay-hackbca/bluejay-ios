@@ -36,21 +36,6 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
         }
-        
-        let url = NSURL(string: "http://10.31.67.43:5000/submit")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        
-        let bodyParameters = [
-            "text": "George Washington (February 22, 1732 [O.S. February 11, 1731][Note 1][Note 2] – December 14, 1799) was the first President of the United States (1789–1797), the Commander-in-Chief of the Continental Army during the American Revolutionary War, and one of the Founding Fathers of the United States.[4] He presided over the convention that drafted the United States Constitution, which replaced the Articles of Confederation and remains the supreme law of the land.",
-        ]
-        let bodyString = self.stringFromQueryParameters(bodyParameters)
-        request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-            let content = NSString(data: data, encoding: NSUTF8StringEncoding)
-            self.renderMarkdown(content!)
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,19 +74,41 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         self.speechButton.enabled = true
     }
     
+    @IBAction func backButton(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func beginRecognizing(sender: AnyObject) {
-        self.beginSpeechRecognition()
+        if ATTSpeechService.sharedSpeechService().currentState.value == ATTSpeechServiceStateIdle.value {
+            self.beginSpeechRecognition()
+        }
     }
     
     func beginSpeechRecognition() {
         let service = ATTSpeechService.sharedSpeechService()
         service.startListening()
+        
+        self.speechButton.setImage(UIImage(named: "Microphone-On"), forState: .Normal)
     }
     
     func handleRecognition(recognizedText: String) {
-        self.renderMarkdown(recognizedText)
+        println("received text: \(recognizedText)")
+        let escapedText = recognizedText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
-        let escapedText = recognizedText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        let url = NSURL(string: "http://10.31.67.43:5000/submit")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        
+        let bodyParameters = [
+            "text": escapedText,
+        ]
+        let bodyString = self.stringFromQueryParameters(bodyParameters)
+        request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            let content = NSString(data: data, encoding: NSUTF8StringEncoding)
+            self.renderMarkdown(content!)
+        }
     }
     
     func speechServiceSucceeded(speechService: ATTSpeechService!) {
@@ -117,6 +124,8 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         }
         
         self.noticeLabel.alpha = 0
+        
+        self.speechButton.setImage(UIImage(named: "Microphone-Normal"), forState: .Normal)
     }
     
     func speechService(speechService: ATTSpeechService!, failedWithError error: NSError!) {
