@@ -38,6 +38,7 @@
 		EB1EF55C1AC761DF00A2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluejayTests.swift; sourceTree = "<group>"; };
 		EBB80C371AC78D2A001DE389 /* SpeechKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpeechKit.framework; sourceTree = SOURCE_ROOT; };
+		EBB80C3A1AC790F4001DE389 /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 		EB1EF5391AC761DE00A2A2B8 = {
 			isa = PBXGroup;
 			children = (
+				EB1EF5671AC78D0300A2A2B8 /* Frameworks */,
 				EB1EF5441AC761DE00A2A2B8 /* Bluejay */,
 				EB1EF55A1AC761DF00A2A2B8 /* BluejayTests */,
 				EB1EF5431AC761DE00A2A2B8 /* Products */,
@@ -80,7 +82,7 @@
 		EB1EF5441AC761DE00A2A2B8 /* Bluejay */ = {
 			isa = PBXGroup;
 			children = (
-				EB1EF5671AC78D0300A2A2B8 /* Frameworks */,
+				EBB80C391AC790E5001DE389 /* Utilities */,
 				EB1EF5471AC761DE00A2A2B8 /* AppDelegate.swift */,
 				EB1EF5491AC761DE00A2A2B8 /* ViewController.swift */,
 				EB1EF54B1AC761DE00A2A2B8 /* Main.storyboard */,
@@ -122,6 +124,15 @@
 				EBB80C371AC78D2A001DE389 /* SpeechKit.framework */,
 			);
 			name = Frameworks;
+			path = Bluejay;
+			sourceTree = "<group>";
+		};
+		EBB80C391AC790E5001DE389 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EBB80C3A1AC790F4001DE389 /* ObjectiveBridge.h */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +369,7 @@
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
 			};
 			name = Debug;
 		};
@@ -374,6 +386,7 @@
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
 			};
 			name = Release;
 		};
