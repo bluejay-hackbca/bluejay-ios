@@ -31,7 +31,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let notes = defaults.arrayForKey("BluejayNotes")
         
         if let n = notes {
-            println("found")
+            // for demo purposes
+//            defaults.setObject([AnyObject](), forKey: "BluejayNotes")
         } else {
             defaults.setObject([AnyObject](), forKey: "BluejayNotes")
         }
@@ -75,8 +76,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let nvc = segue.destinationViewController as NoteViewController
-        nvc.noteData = self.noteDataToSend
+        if segue.identifier == "noteSegue" {
+            let nvc = segue.destinationViewController as NoteViewController
+            nvc.noteData = self.noteDataToSend
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
