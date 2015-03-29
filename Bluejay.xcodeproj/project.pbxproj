@@ -13,6 +13,8 @@
 		EB1EF54F1AC761DF00A2A2B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF54E1AC761DF00A2A2B8 /* Images.xcassets */; };
 		EB1EF5521AC761DF00A2A2B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF5501AC761DF00A2A2B8 /* LaunchScreen.xib */; };
 		EB1EF55E1AC761DF00A2A2B8 /* BluejayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */; };
+		EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */; };
+		EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,10 @@
 		EB1EF5571AC761DF00A2A2B8 /* BluejayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluejayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1EF55C1AC761DF00A2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluejayTests.swift; sourceTree = "<group>"; };
+		EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
+		EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
+		EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
+		EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLJAuthentication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +89,7 @@
 				EB1EF54B1AC761DE00A2A2B8 /* Main.storyboard */,
 				EB1EF54E1AC761DF00A2A2B8 /* Images.xcassets */,
 				EB1EF5501AC761DF00A2A2B8 /* LaunchScreen.xib */,
+				EBFEDE7F1AC7A19700C1C09E /* Resources */,
 				EB1EF5451AC761DE00A2A2B8 /* Supporting Files */,
 			);
 			path = Bluejay;
@@ -110,6 +118,17 @@
 				EB1EF55C1AC761DF00A2A2B8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBFEDE7F1AC7A19700C1C09E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */,
+				EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */,
+				EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */,
+				EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1EF54A1AC761DE00A2A2B8 /* ViewController.swift in Sources */,
+				EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */,
 				EB1EF5481AC761DE00A2A2B8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,7 +365,12 @@
 				);
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bluejay",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
 			};
 			name = Debug;
 		};
@@ -361,7 +386,12 @@
 				);
 				INFOPLIST_FILE = Bluejay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bluejay",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
 			};
 			name = Release;
 		};
