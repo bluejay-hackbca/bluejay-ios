@@ -18,6 +18,8 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     @IBOutlet var sbRightConstraint: NSLayoutConstraint!
     @IBOutlet var sbBottomConstraint: NSLayoutConstraint!
     
+    var fullText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,10 +35,12 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
             let style = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)!
             let htmlStyle = "<style type=\"text/css\">\n" + style + "\n</style>"
             self.webView.loadHTMLString("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>", baseURL: nil)
-            println("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>")
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "refreshSpeech", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
     
     override func viewDidLayoutSubviews() {
@@ -46,11 +50,16 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         sbBottomConstraint.constant = device.width / 22
     }
     
+    func refreshSpeech() {
+        let service = ATTSpeechService.sharedSpeechService()
+        service.stopListening()
+    }
+    
     func prepareSpeech() {
         let service = ATTSpeechService.sharedSpeechService()
         service.recognitionURL = NSURL(string: "https://api.att.com/speech/v3/speechToText")!
         service.delegate = self
-        service.showUI = true
+        service.showUI = false
         service.speechContext = "Generic"
         service.bearerAuthToken = attAccessToken
         service.prepare()
@@ -60,7 +69,6 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     
     @IBAction func beginRecognizing(sender: AnyObject) {
         let service = ATTSpeechService.sharedSpeechService()
-        service.xArgs = ["main": "ClientScreen"]
         service.startListening()
     }
     

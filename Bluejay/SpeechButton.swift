@@ -11,7 +11,7 @@ import UIKit
 class SpeechButton: UIButton {
     
     override func drawRect(rect: CGRect) {
-        let bgColor = UIColor(red: 0.33, green: 0.67, blue: 0.93, alpha: 1)
+        let bgColor = UIColor(red: 0.11, green: 0.46, blue: 0.74, alpha: 1)
         
         let context = UIGraphicsGetCurrentContext()
         CGContextAddEllipseInRect(context, rect)
@@ -26,6 +26,5 @@ class SpeechButton: UIButton {
         microphone.frame = CGRectMake((rect.width - width) / 2, 14, height * (73/128), height)
         
         self.addSubview(microphone)
-//        microphone.center = self.center
     }
 }
