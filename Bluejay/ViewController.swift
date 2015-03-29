@@ -38,9 +38,6 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
-        
-        let timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "refreshSpeech", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,11 +45,6 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         sbWidthConstraint.constant = device.width / 6.44
         sbRightConstraint.constant = device.width / 22
         sbBottomConstraint.constant = device.width / 22
-    }
-    
-    func refreshSpeech() {
-        let service = ATTSpeechService.sharedSpeechService()
-        service.stopListening()
     }
     
     func prepareSpeech() {
@@ -68,11 +60,17 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     }
     
     @IBAction func beginRecognizing(sender: AnyObject) {
+        self.beginSpeechRecognition()
+    }
+    
+    func beginSpeechRecognition() {
         let service = ATTSpeechService.sharedSpeechService()
         service.startListening()
     }
     
     func handleRecognition(recognizedText: String) {
+        self.webView.loadHTMLString(recognizedText, baseURL: nil)
+        
         let escapedText = recognizedText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
         println(recognizedText)
     }

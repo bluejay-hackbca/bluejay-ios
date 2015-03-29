@@ -26,5 +26,14 @@ class SpeechButton: UIButton {
         microphone.frame = CGRectMake((rect.width - width) / 2, 14, height * (73/128), height)
         
         self.addSubview(microphone)
+        
+        self.clipsToBounds = false
+        
+        let shadowPath = UIBezierPath(ovalInRect: rect)
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowOffset = CGSizeMake(0, 2)
+        self.layer.shadowOpacity = 0.6
+        self.layer.shadowPath = shadowPath.CGPath
     }
 }
