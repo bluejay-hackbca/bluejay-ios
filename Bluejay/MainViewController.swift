@@ -49,6 +49,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegueWithIdentifier("noteSegue", sender: self)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

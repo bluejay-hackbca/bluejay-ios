@@ -26,11 +26,23 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otk-eb-OMt">
+                                        <rect key="frame" x="540" y="16" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="otk-eb-OMt" secondAttribute="height" multiplier="1:1" id="PMn-pN-HCs"/>
+                                        </constraints>
+                                        <state key="normal" image="Plus">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1529411765" green="0.66666666669999997" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="otk-eb-OMt" secondAttribute="bottom" constant="16" id="FDq-z2-phI"/>
                                     <constraint firstAttribute="centerY" secondItem="vlc-RO-3lP" secondAttribute="centerY" id="Giy-xQ-tQy"/>
                                     <constraint firstItem="vlc-RO-3lP" firstAttribute="leading" secondItem="OxN-x3-ckq" secondAttribute="leading" constant="32" id="Rp2-bH-DDy"/>
+                                    <constraint firstAttribute="trailing" secondItem="otk-eb-OMt" secondAttribute="trailing" constant="28" id="SLD-hO-i9e"/>
+                                    <constraint firstItem="otk-eb-OMt" firstAttribute="top" secondItem="OxN-x3-ckq" secondAttribute="top" constant="16" id="n6I-sV-3kO"/>
                                     <constraint firstAttribute="height" constant="64" id="xqa-xK-6JB"/>
                                 </constraints>
                             </view>
@@ -106,16 +118,17 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Ml6-La-Qd4" id="Hz9-1h-qZs"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="noteSegue" id="AEn-SE-0Jy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pob-Lv-10e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-458" y="372"/>
         </scene>
-        <!--View Controller-->
+        <!--Note View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Bluejay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="NoteViewController" customModule="Bluejay" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -237,6 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="374" y="372"/>
         </scene>
     </scenes>
     <resources>
@@ -244,5 +258,6 @@
         <image name="Forwards" width="144" height="96"/>
         <image name="Microphone-Disabled" width="128" height="128"/>
         <image name="Microphone-Normal" width="128" height="128"/>
+        <image name="Plus" width="192" height="192"/>
     </resources>
 </document>

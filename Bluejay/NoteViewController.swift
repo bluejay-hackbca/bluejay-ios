@@ -9,7 +9,7 @@
 import MMMarkdown
 import UIKit
 
-class ViewController: UIViewController, ATTSpeechServiceDelegate {
+class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
     
     @IBOutlet var noticeLabel: UILabel!
     @IBOutlet var webView: UIWebView!
