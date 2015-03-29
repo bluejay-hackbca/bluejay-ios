@@ -23,18 +23,22 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string: "https://raw.githubusercontent.com/jackcook/GCHelper/master/README.md")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        
+        let url = NSURL(string: "http://10.31.67.43:5000/submit")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        
+        let bodyObject = [
+            "text": "test"
+        ]
+        
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(bodyObject, options: nil, error: nil)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             let content = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-            let source = MMMarkdown.HTMLStringWithMarkdown(content, extensions: .GitHubFlavored, error: nil)
-            
-            let path = NSBundle.mainBundle().pathForResource("github-markdown", ofType: "css")!
-            let style = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)!
-            let htmlStyle = "<style type=\"text/css\">\n" + style + "\n</style>"
-            self.webView.loadHTMLString("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>", baseURL: nil)
+            self.renderMarkdown(content)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
@@ -45,6 +49,14 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         sbWidthConstraint.constant = device.width / 6.44
         sbRightConstraint.constant = device.width / 22
         sbBottomConstraint.constant = device.width / 22
+    }
+    
+    func renderMarkdown(markdown: String) {
+        let source = MMMarkdown.HTMLStringWithMarkdown(markdown, extensions: .GitHubFlavored, error: nil)
+        let path = NSBundle.mainBundle().pathForResource("github-markdown", ofType: "css")!
+        let style = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)!
+        let htmlStyle = "<style type=\"text/css\">\n" + style + "\n</style>"
+        self.webView.loadHTMLString("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>", baseURL: nil)
     }
     
     func prepareSpeech() {
@@ -69,10 +81,9 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
     }
     
     func handleRecognition(recognizedText: String) {
-        self.webView.loadHTMLString(recognizedText, baseURL: nil)
+        self.renderMarkdown(recognizedText)
         
         let escapedText = recognizedText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        println(recognizedText)
     }
     
     func speechServiceSucceeded(speechService: ATTSpeechService!) {
