@@ -75,7 +75,7 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
     }
     
     @IBAction func backButton(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func beginRecognizing(sender: AnyObject) {
