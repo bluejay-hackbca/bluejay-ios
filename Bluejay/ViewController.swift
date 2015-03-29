@@ -28,7 +28,12 @@ class ViewController: UIViewController, ATTSpeechServiceDelegate {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             let content = NSString(data: data, encoding: NSUTF8StringEncoding) as String
             let source = MMMarkdown.HTMLStringWithMarkdown(content, extensions: .GitHubFlavored, error: nil)
-            self.webView.loadHTMLString(source, baseURL: nil)
+            
+            let path = NSBundle.mainBundle().pathForResource("github-markdown", ofType: "css")!
+            let style = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)!
+            let htmlStyle = "<style type=\"text/css\">\n" + style + "\n</style>"
+            self.webView.loadHTMLString("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>", baseURL: nil)
+            println("<html><head>" + htmlStyle + "</head><body>" + source + "</body></html>")
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)

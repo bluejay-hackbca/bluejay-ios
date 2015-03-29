@@ -17,6 +17,7 @@
 		EB8004671AC7B218008E8B25 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004631AC7B011008E8B25 /* AVFoundation.framework */; };
 		EB8004691AC7B21F008E8B25 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */; };
 		EB80046C1AC7BD12008E8B25 /* SpeechButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */; };
+		EB80046E1AC7D492008E8B25 /* github-markdown.css in Resources */ = {isa = PBXBuildFile; fileRef = EB80046D1AC7D492008E8B25 /* github-markdown.css */; };
 		EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */; };
 		EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		EB8004651AC7B019008E8B25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
+		EB80046D1AC7D492008E8B25 /* github-markdown.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "github-markdown.css"; sourceTree = "<group>"; };
 		EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
 		EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
 		EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */,
 				EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */,
 				EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */,
+				EB80046D1AC7D492008E8B25 /* github-markdown.css */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1EF54D1AC761DE00A2A2B8 /* Main.storyboard in Resources */,
+				EB80046E1AC7D492008E8B25 /* github-markdown.css in Resources */,
 				EB1EF5521AC761DF00A2A2B8 /* LaunchScreen.xib in Resources */,
 				EB1EF54F1AC761DF00A2A2B8 /* Images.xcassets in Resources */,
 			);
