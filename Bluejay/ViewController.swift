@@ -14,4 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    @IBAction func beginRecognizing(sender: AnyObject) {
+    }
 }

@@ -14,8 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        SpeechKit.setupWithID("NMDPPRODUCTION_Jack_Cook_Bluejay_20150329014408", host: "dhm.nmdp.nuancemobility.net", port: 443, useSSL: true, delegate: nil)
-        
         return true
     }
 }
