@@ -33,6 +33,7 @@ func authenticateAtt() {
                 if let accessToken = json["access_token"] as? String {
                     SSKeychain.setPassword(refreshToken, forService: "Bluejay", account: "ATT")
                     attAccessToken = accessToken
+                    attAuthenticated = true
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(BJATTAuthenticatedNotification, object: nil)
                 }

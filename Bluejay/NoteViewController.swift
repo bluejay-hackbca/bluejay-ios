@@ -31,7 +31,11 @@ class NoteViewController: UIViewController, ATTSpeechServiceDelegate {
         
         self.speechButton.enabled = false
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+        if attAuthenticated {
+            self.prepareSpeech()
+        } else {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+        }
         
         let url = NSURL(string: "http://10.31.67.43:5000/submit")
         let request = NSMutableURLRequest(URL: url!)
