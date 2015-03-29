@@ -14,6 +14,8 @@
 		EB1EF54F1AC761DF00A2A2B8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF54E1AC761DF00A2A2B8 /* Images.xcassets */; };
 		EB1EF5521AC761DF00A2A2B8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1EF5501AC761DF00A2A2B8 /* LaunchScreen.xib */; };
 		EB1EF55E1AC761DF00A2A2B8 /* BluejayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */; };
+		EB8004671AC7B218008E8B25 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004631AC7B011008E8B25 /* AVFoundation.framework */; };
+		EB8004691AC7B21F008E8B25 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */; };
 		EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */; };
 		EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,9 @@
 		EB1EF5571AC761DF00A2A2B8 /* BluejayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluejayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1EF55C1AC761DF00A2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluejayTests.swift; sourceTree = "<group>"; };
+		EB8004631AC7B011008E8B25 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EB8004651AC7B019008E8B25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
 		EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
 		EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
@@ -53,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8004691AC7B21F008E8B25 /* AudioToolbox.framework in Frameworks */,
+				EB8004671AC7B218008E8B25 /* AVFoundation.framework in Frameworks */,
 				EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */,
 				59538650625241BA455940D7 /* Pods.framework in Frameworks */,
 			);
@@ -71,6 +78,9 @@
 		6C19A164341AA29783C4048A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */,
+				EB8004651AC7B019008E8B25 /* Security.framework */,
+				EB8004631AC7B011008E8B25 /* AVFoundation.framework */,
 				4AECF53B3624AF48FB2ADD6E /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -445,8 +455,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bluejay",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -467,8 +479,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Bluejay",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Bluejay/ObjectiveBridge.h;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
