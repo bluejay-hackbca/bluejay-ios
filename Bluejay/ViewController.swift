@@ -6,14 +6,39 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+import MMMarkdown
 import UIKit
 
 class ViewController: UIViewController, ATTSpeechServiceDelegate {
+    
+    @IBOutlet var webView: UIWebView!
 
+    @IBOutlet var speechButton: SpeechButton!
+    @IBOutlet var sbWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var sbRightConstraint: NSLayoutConstraint!
+    @IBOutlet var sbBottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let url = NSURL(string: "https://raw.githubusercontent.com/jackcook/GCHelper/master/README.md")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            let content = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+            let source = MMMarkdown.HTMLStringWithMarkdown(content, extensions: .GitHubFlavored, error: nil)
+            self.webView.loadHTMLString(source, baseURL: nil)
+        }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "prepareSpeech", name: BJATTAuthenticatedNotification, object: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let device = UIScreen.mainScreen().bounds.size
+        sbWidthConstraint.constant = device.width / 6.44
+        sbRightConstraint.constant = device.width / 22
+        sbBottomConstraint.constant = device.width / 22
     }
     
     func prepareSpeech() {

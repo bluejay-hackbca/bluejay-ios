@@ -8,7 +8,6 @@
 
 import Foundation
 import SSKeychain
-import SwiftyJSON
 
 let BJATTAuthenticatedNotification = "BJATTAuthenticatedNotification"
 let attClientId = "44oooscoert4xj3hbpztz0013minknuo"
@@ -29,13 +28,14 @@ func authenticateAtt() {
     request.timeoutInterval = 30
     
     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-        let json = JSON(data: data)
-        if let refreshToken = json["refresh_token"].string {
-            if let accessToken = json["access_token"].string {
-                SSKeychain.setPassword(refreshToken, forService: "Bluejay", account: "ATT")
-                attAccessToken = accessToken
-                
-                NSNotificationCenter.defaultCenter().postNotificationName(BJATTAuthenticatedNotification, object: nil)
+        if let json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+            if let refreshToken = json["refresh_token"] as? String {
+                if let accessToken = json["access_token"] as? String {
+                    SSKeychain.setPassword(refreshToken, forService: "Bluejay", account: "ATT")
+                    attAccessToken = accessToken
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(BJATTAuthenticatedNotification, object: nil)
+                }
             }
         }
     }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,22 +17,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMZ-QT-NU2">
-                                <rect key="frame" x="280" y="285" width="40" height="30"/>
-                                <state key="normal" title="Begin">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ff-Zy-Cng">
+                                <rect key="frame" x="0.0" y="20" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoW-nV-15L" customClass="SpeechButton" customModule="Bluejay">
+                                <rect key="frame" x="504" y="504" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uoW-nV-15L" secondAttribute="height" multiplier="1:1" id="PJg-Py-yOQ"/>
+                                    <constraint firstAttribute="width" constant="64" id="qTZ-n2-Wgy"/>
+                                </constraints>
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="beginRecognizing:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9A7-mZ-EmU"/>
+                                    <action selector="beginRecognizing:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d3k-OS-Agb"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="DMZ-QT-NU2" secondAttribute="centerY" id="B5X-ZP-CE8"/>
-                            <constraint firstAttribute="centerX" secondItem="DMZ-QT-NU2" secondAttribute="centerX" id="t0W-Yn-f73"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uoW-nV-15L" secondAttribute="bottom" constant="32" id="4rr-C8-vGP"/>
+                            <constraint firstItem="0ff-Zy-Cng" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="6Wk-Ua-7wa"/>
+                            <constraint firstItem="0ff-Zy-Cng" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9R7-ON-l9a"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="0ff-Zy-Cng" secondAttribute="bottom" id="SQw-Ai-Hnk"/>
+                            <constraint firstAttribute="trailing" secondItem="uoW-nV-15L" secondAttribute="trailing" constant="32" id="ie1-2E-TNn"/>
+                            <constraint firstItem="0ff-Zy-Cng" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="wNT-bU-nBS"/>
+                            <constraint firstAttribute="trailing" secondItem="0ff-Zy-Cng" secondAttribute="trailing" id="xNy-aQ-SIT"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Wk-Ua-7wa"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="sbBottomConstraint" destination="4rr-C8-vGP" id="MJF-zD-iOG"/>
+                        <outlet property="sbRightConstraint" destination="ie1-2E-TNn" id="NmC-vW-wZz"/>
+                        <outlet property="sbWidthConstraint" destination="qTZ-n2-Wgy" id="y13-z1-xeb"/>
+                        <outlet property="speechButton" destination="uoW-nV-15L" id="IUr-V7-2eP"/>
+                        <outlet property="webView" destination="0ff-Zy-Cng" id="7Oj-cE-YoT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

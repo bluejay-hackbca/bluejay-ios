@@ -16,6 +16,7 @@
 		EB1EF55E1AC761DF00A2A2B8 /* BluejayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1EF55D1AC761DF00A2A2B8 /* BluejayTests.swift */; };
 		EB8004671AC7B218008E8B25 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004631AC7B011008E8B25 /* AVFoundation.framework */; };
 		EB8004691AC7B21F008E8B25 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */; };
+		EB80046C1AC7BD12008E8B25 /* SpeechButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */; };
 		EBFEDE811AC7A1A000C1C09E /* ATTSpeechKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */; };
 		EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFEDE841AC7A3E800C1C09E /* BLJAuthentication.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		EB8004631AC7B011008E8B25 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB8004651AC7B019008E8B25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EB8004681AC7B21F008E8B25 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
 		EBFEDE801AC7A1A000C1C09E /* ATTSpeechKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ATTSpeechKit.a; sourceTree = "<group>"; };
 		EBFEDE821AC7A1A600C1C09E /* ATTSpeechKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTSpeechKit.h; sourceTree = "<group>"; };
 		EBFEDE831AC7A1B300C1C09E /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		EB1EF5441AC761DE00A2A2B8 /* Bluejay */ = {
 			isa = PBXGroup;
 			children = (
+				EB80046A1AC7BD0A008E8B25 /* Views */,
 				EB1EF5471AC761DE00A2A2B8 /* AppDelegate.swift */,
 				EB1EF5491AC761DE00A2A2B8 /* ViewController.swift */,
 				EB1EF54B1AC761DE00A2A2B8 /* Main.storyboard */,
@@ -152,6 +155,14 @@
 				EB1EF55C1AC761DF00A2A2B8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB80046A1AC7BD0A008E8B25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB80046B1AC7BD12008E8B25 /* SpeechButton.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		EBFEDE7F1AC7A19700C1C09E /* Resources */ = {
@@ -318,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1EF54A1AC761DE00A2A2B8 /* ViewController.swift in Sources */,
+				EB80046C1AC7BD12008E8B25 /* SpeechButton.swift in Sources */,
 				EBFEDE851AC7A3E800C1C09E /* BLJAuthentication.swift in Sources */,
 				EB1EF5481AC761DE00A2A2B8 /* AppDelegate.swift in Sources */,
 			);
